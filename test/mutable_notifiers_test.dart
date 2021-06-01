@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:mutable_notifiers/mutable_notifier.dart';
+import 'package:mutable_notifiers/mutable_notifiers.dart';
 
 void main() {
   int Function(ChangeNotifier, Function, int, Function, int) doCalls = (
