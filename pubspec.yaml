@@ -1,5 +1,5 @@
 name: mutable_notifiers
-description: Implementations of common Notifiers that can be muted for single/multiple calls.
+description: Implementations of ChangeNotifier and ValueNotifier that can be muted for single/multiple calls.
 version: 1.0.0
 homepage:
 

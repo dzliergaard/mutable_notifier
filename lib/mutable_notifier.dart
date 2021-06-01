@@ -50,9 +50,9 @@ mixin MutableNotifier on ChangeNotifier {
 /// A ValueNotifier that can be muted for single/multiple calls.
 ///
 /// For a mixin version, see [MutableValueNotifierMixin].
-abstract class MutableValueNotifier<T> = ValueNotifier<T> with MutableNotifier;
+class MutableValueNotifier<T> = ValueNotifier<T> with MutableNotifier;
 
 /// A ChangeNotifier that can be muted for single/multiple calls.
 ///
 /// For a mixin version, see [MutableChangeNotifierMixin].
-abstract class MutableChangeNotifier = ChangeNotifier with MutableNotifier;
+class MutableChangeNotifier = ChangeNotifier with MutableNotifier;
