@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 /// A mixin for MutableChangeNotifier and MutableValueNotifier that provides mute functions.
-mixin MutableNotifier on ChangeNotifier {
+mixin MuteableNotifier on ChangeNotifier {
   bool _muted = false;
   bool _muteNext = false;
   bool get isMuted => _muted || _muteNext;
@@ -54,9 +54,9 @@ mixin MutableNotifier on ChangeNotifier {
 /// A ValueNotifier that can be muted for single/multiple calls.
 ///
 /// For a mixin version, see [MutableValueNotifierMixin].
-class MutableValueNotifier<T> = ValueNotifier<T> with MutableNotifier;
+class MuteableValueNotifier<T> = ValueNotifier<T> with MuteableNotifier;
 
 /// A ChangeNotifier that can be muted for single/multiple calls.
 ///
 /// For a mixin version, see [MutableChangeNotifierMixin].
-class MutableChangeNotifier = ChangeNotifier with MutableNotifier;
+class MuteableChangeNotifier = ChangeNotifier with MuteableNotifier;

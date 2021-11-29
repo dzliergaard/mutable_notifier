@@ -1,7 +1,3 @@
-# Relocated
-
-* Discontinued - renamed to "[muteable_notifiers](https://pub.dev/packages/muteable_notifiers)".
-
 # mutable_notifier
 
 Extensions of ChangeNotifier and ValueNotifier that allow for temporarily muting the notifier in question.
