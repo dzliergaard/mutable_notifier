@@ -58,6 +58,13 @@ void main() {
   };
 
   group('MutableChangeNotifier', () {
+    test('Confirm [notifyListeners] returns true when unmuted, false when muted', () {
+      var mcnt = new MutableChangeNotifierTestClass();
+      expect(mcnt.notifyListeners(), true);
+      mcnt.mute();
+      expect(mcnt.notifyListeners(), false);
+    });
+
     test('Test normal behavior (no muting).', () {
       var mcnt = new MutableChangeNotifierTestClass();
       doChangeNotifierCalls(mcnt, 1, 2);
@@ -110,6 +117,13 @@ void main() {
   });
 
   group('MutableValueNotifier', () {
+    test('Confirm [notifyListeners] returns true when unmuted, false when muted', () {
+      var mvnt = new MutableValueNotifierTestClass("value");
+      expect(mvnt.notifyListeners(), true);
+      mvnt.mute();
+      expect(mvnt.notifyListeners(), false);
+    });
+
     test('Test normal behavior (no muting).', () {
       var mvnt = new MutableValueNotifierTestClass("value");
       doValueNotifierCalls(mvnt, 1, 2);

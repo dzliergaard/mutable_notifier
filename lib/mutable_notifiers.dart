@@ -4,16 +4,20 @@ import 'package:flutter/foundation.dart';
 mixin MutableNotifier on ChangeNotifier {
   bool _muted = false;
   bool _muteNext = false;
+  bool get isMuted => _muted || _muteNext;
 
-  void notifyListeners() {
+  /// If not muted, calls [ChangeNotifier.notifyListeners].
+  /// Returns true if [ChangeNotifier.notifyListeners] was called.
+  bool notifyListeners() {
     if (_muteNext) {
       _muteNext = false;
-      return;
+      return false;
     }
     if (_muted) {
-      return;
+      return false;
     }
     super.notifyListeners();
+    return true;
   }
 
   /// Perform the provided function while muted, then return to previous mute state.
