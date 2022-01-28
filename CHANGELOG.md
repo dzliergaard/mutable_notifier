@@ -1,3 +1,7 @@
+## 1.0.7
+
+* Correct example directory structure.
+
 ## 1.0.6
 
 * Add example file.
