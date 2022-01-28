@@ -1,6 +1,6 @@
 name: muteable_notifiers
 description: Implementations of ChangeNotifier and ValueNotifier that can be muted for single/multiple calls.
-version: 1.0.5
+version: 1.0.6
 homepage: https://github.com/dzliergaard/mutable_notifier
 
 environment:

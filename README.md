@@ -1,25 +1,25 @@
-# mutable_notifier
+# muteable_notifier
 
 Extensions of ChangeNotifier and ValueNotifier that allow for temporarily muting the notifier in question.
 
-`MutableChangeNotifier/MutableValueNotifier.muteNext()` mutes only the next call to "notifyListeners," and then
+`MuteableChangeNotifier/MuteableValueNotifier.muteNext()` mutes only the next call to "notifyListeners," and then
 returns to the previous mute state, whether it was muted or unmuted.
 
-`MutableChangeNotifier/MutableValueNotifier.mute() and .unmute()` toggle the mute state on and off.
+`MuteableChangeNotifier/MuteableValueNotifier.mute() and .unmute()` toggle the mute state on and off.
 
-`MutableChangeNotifier/MutableValueNotifier.doMuted(Function fn)` mutes the notifier, executes the function, then
+`MuteableChangeNotifier/MuteableValueNotifier.doMuted(Function fn)` mutes the notifier, executes the function, then
 returns to the previous mute state.
 
 ## Getting Started
 
-Create a subclass of MutableChangeNotifier or MutableValueNotifier.
+Create a subclass of MuteableChangeNotifier or MuteableValueNotifier.
 
 ```dart
-
-class MyChangeNotifier extends MutableChangeNotifier {
+class MyChangeNotifier extends MuteableChangeNotifier {
   String _field;
   String get field => _field;
-  set Field(String newValue) {
+
+  void setField(String newValue) {
     if (newValue == _field) {
       return;
     }
@@ -30,7 +30,7 @@ class MyChangeNotifier extends MutableChangeNotifier {
   ...
 }
 
-class MyStringValueNotifier extends MutableValueNotifier<String> {
+class MyStringValueNotifier extends MuteableValueNotifier<String> {
   MyStringValueNotifier(String value) : super(value);
 }
 ```
@@ -40,25 +40,25 @@ classes are muted.
 
 ```dart
 
-var mutableChangeNotifier = new MyChangeNotifier(field: "initial field value");
-mutableChangeNotifier.addListener(someListenerFunction);
+var muteableChangeNotifier = new MyChangeNotifier(field: "initial field value");
+muteableChangeNotifier.addListener(someListenerFunction);
 
 // someListenerFunction is called.
-mutableChangeNotifier.field = "second value";
+muteableChangeNotifier.field = "second value";
 
-mutableChangeNotifier.muteNext();
+muteableChangeNotifier.muteNext();
 // someListenerFunction is NOT called due to `muteNext`, but `field` is still updated.
-mutableChangeNotifier.field = "third field value";
+muteableChangeNotifier.field = "third field value";
 
 // someListenerFunction IS called, as only the previous call was muted by `muteNext`.
-mutableChangeNotifier.field = "fourth field value";
+muteableChangeNotifier.field = "fourth field value";
 
-mutableChangeNotifier.mute();
-// someListenerFunction is NOT called until `mutableChangeNotifier.unmute()` is invoked.
-mutableChangeNotifier.field = "fifth field value";
-mutableChangeNotifier.field = "sixth field value";
-mutableChangeNotifier.field = "seventh field value";
+muteableChangeNotifier.mute();
+// someListenerFunction is NOT called until `muteableChangeNotifier.unmute()` is invoked.
+muteableChangeNotifier.field = "fifth field value";
+muteableChangeNotifier.field = "sixth field value";
+muteableChangeNotifier.field = "seventh field value";
 
-mutableChangeNotifier.unmute();
+muteableChangeNotifier.unmute();
 // someListenerFunction IS called, now that the notifier has been unmuted.
-mutableChangeNotifier.field = "final field value";
+muteableChangeNotifier.field = "final field value";
